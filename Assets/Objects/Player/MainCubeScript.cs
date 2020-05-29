@@ -7,7 +7,6 @@ namespace Cube
 {
 public class MainCubeScript : MonoBehaviour
 {
-public int groundLayer = 8;
 public GameObject fallingCube;
 
 public Vector3 aimPosition;
@@ -29,6 +28,7 @@ void Awake()
 			Move();
 		}
 	};
+	controls.Cube.Interact.performed += _ => Interact();
 }
 
 void OnEnable()
@@ -72,10 +72,19 @@ bool CheckGroundAndWalls(Vector2 direction)
 {
 	Vector3 dir3 = new Vector3(direction.x, 0f, direction.y);
 	RaycastHit hit;
-	int layerMask = 1 << groundLayer;
+	int layerMask = 1 << 8;
 	bool wall = !Physics.Raycast(aimPosition, dir3, out hit, 1f, layerMask);
 	bool ground = Physics.Raycast(aimPosition+dir3, new Vector3(0f, -1f, 0f), out hit, 1f, layerMask);
 	return wall && ground;
+}
+
+void Interact()
+{
+	RaycastHit hit;
+	if (Physics.Raycast(aimPosition, new Vector3(0f, -1f, 0f), out hit, 1f, 1 << 9))
+	{
+		hit.collider.GetComponent<InteractScript>().Interact();
+	}
 }
 }
 }

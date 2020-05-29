@@ -25,6 +25,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""d14f2549-1521-48b8-b0fa-325a34978205"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -82,6 +90,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc42de59-70be-48ed-9a38-6b05b2c85b58"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -108,6 +127,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Cube
         m_Cube = asset.FindActionMap("Cube", throwIfNotFound: true);
         m_Cube_Move = m_Cube.FindAction("Move", throwIfNotFound: true);
+        m_Cube_Interact = m_Cube.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -158,11 +178,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Cube;
     private ICubeActions m_CubeActionsCallbackInterface;
     private readonly InputAction m_Cube_Move;
+    private readonly InputAction m_Cube_Interact;
     public struct CubeActions
     {
         private @InputMaster m_Wrapper;
         public CubeActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Cube_Move;
+        public InputAction @Interact => m_Wrapper.m_Cube_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Cube; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -175,6 +197,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_CubeActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_CubeActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_CubeActionsCallbackInterface.OnMove;
+                @Interact.started -= m_Wrapper.m_CubeActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CubeActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CubeActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_CubeActionsCallbackInterface = instance;
             if (instance != null)
@@ -182,6 +207,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -198,5 +226,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface ICubeActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
