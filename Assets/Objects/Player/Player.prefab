@@ -92,5 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f39721740bbb0a4ba252c9cae8feeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer: 8
   fallingCube: {fileID: 2768498966825069594, guid: 147445bf06716f94996445c47d0bda28,
     type: 3}
