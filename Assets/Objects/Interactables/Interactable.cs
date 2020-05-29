@@ -1,7 +1,9 @@
+using Cube;
+
 namespace Interactables
 {
 public interface Interactable
 {
-void Interact();
+void Interact(MainCubeScript player);
 }
 }

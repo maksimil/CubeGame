@@ -12,7 +12,6 @@ public GameObject fallingCube;
 
 public Vector3 aimPosition;
 private Vector2 direction = new Vector2(0f, 0f);
-private float height;
 private bool moving = false;
 
 // <editor-fold desc = controls>
@@ -43,16 +42,9 @@ void OnDisable()
 }
 // </editor-fold>
 
-// Start is called before the first frame update
-void Start()
-{
-	height = transform.position.y;
-}
-
 // Update is called once per frame
 void Update()
 {
-
 	transform.position = Vector3.Lerp(transform.position, aimPosition, Statics.smoothing*Time.deltaTime);
 }
 
@@ -64,7 +56,7 @@ void Move()
 		FallingCubeScript fcube = Instantiate(fallingCube, transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FallingCubeScript>();
 		fcube.ondie = Move;
 		Vector3 pos = transform.position;
-		transform.position = new Vector3(pos.x+direction.x, height-1f, pos.z+direction.y);
+		transform.position = new Vector3(pos.x+direction.x, aimPosition.y-1f, pos.z+direction.y);
 		aimPosition = transform.position + new Vector3(0f, 1f, 0f);
 	}
 }
@@ -84,8 +76,13 @@ void Interact()
 	RaycastHit hit;
 	if (Physics.Raycast(aimPosition, new Vector3(0f, -1f, 0f), out hit, 1f, 1 << 9))
 	{
-		hit.collider.GetComponent<Interactable>().Interact();
+		hit.collider.GetComponent<Interactable>().Interact(this);
 	}
+}
+
+public void movePlayer(Vector3 delta)
+{
+	aimPosition += delta;
 }
 }
 }

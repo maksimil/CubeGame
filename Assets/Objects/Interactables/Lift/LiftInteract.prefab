@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5168009607248139507
+--- !u!1 &845415119917907458
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,54 +8,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5168009607248139504}
-  - component: {fileID: 5168009607248139505}
-  - component: {fileID: 5168009607248139506}
+  - component: {fileID: 845415119917907456}
+  - component: {fileID: 845415119917907459}
+  - component: {fileID: 845415119917907457}
   m_Layer: 9
-  m_Name: InteractForParticle
+  m_Name: LiftInteract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5168009607248139504
+--- !u!4 &845415119917907456
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168009607248139507}
+  m_GameObject: {fileID: 845415119917907458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 9, y: -1, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5168009607248139505
+--- !u!65 &845415119917907459
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168009607248139507}
+  m_GameObject: {fileID: 845415119917907458}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5168009607248139506
+--- !u!114 &845415119917907457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168009607248139507}
+  m_GameObject: {fileID: 845415119917907458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5c2d67e3f5cc47b85548585ed374f, type: 3}
+  m_Script: {fileID: 11500000, guid: 18dc3e8ea9c8e9a449df1c35baedf639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 8847946111210421893, guid: 69d0a307a039d85469d5eaeb542b5a37,
-    type: 3}
+  lift: 4
