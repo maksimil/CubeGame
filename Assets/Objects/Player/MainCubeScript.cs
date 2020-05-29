@@ -9,8 +9,11 @@ public class MainCubeScript : MonoBehaviour
 {
 public int groundLayer = 8;
 public GameObject fallingCube;
-private Vector3 aimPosition;
+
+public Vector3 aimPosition;
+private Vector2 direction = new Vector2(0f, 0f);
 private float height;
+private bool moving = false;
 
 // <editor-fold desc = controls>
 private InputMaster controls;
@@ -18,7 +21,14 @@ private InputMaster controls;
 void Awake()
 {
 	controls = new InputMaster();
-	controls.Cube.Move.performed += ctx => Move(ctx.ReadValue<Vector2>());
+	controls.Cube.Move.performed += ctx =>
+	{
+		direction = ctx.ReadValue<Vector2>();
+		if (!moving && direction != new Vector2(0f, 0f))
+		{
+			Move();
+		}
+	};
 }
 
 void OnEnable()
@@ -41,14 +51,17 @@ void Start()
 // Update is called once per frame
 void Update()
 {
+
 	transform.position = Vector3.Lerp(transform.position, aimPosition, Statics.smoothing*Time.deltaTime);
 }
 
-void Move(Vector2 direction)
+void Move()
 {
-	if (CheckGroundAndWalls(direction))
+	moving = direction != new Vector2(0f, 0f) && CheckGroundAndWalls(direction);
+	if (moving)
 	{
-		Instantiate(fallingCube, transform.position, Quaternion.Euler(0f, 0f, 0f));
+		FallingCubeScript fcube = Instantiate(fallingCube, transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FallingCubeScript>();
+		fcube.ondie = Move;
 		Vector3 pos = transform.position;
 		transform.position = new Vector3(pos.x+direction.x, height-1f, pos.z+direction.y);
 		aimPosition = transform.position + new Vector3(0f, 1f, 0f);
@@ -61,7 +74,6 @@ bool CheckGroundAndWalls(Vector2 direction)
 	RaycastHit hit;
 	int layerMask = 1 << groundLayer;
 	bool wall = !Physics.Raycast(aimPosition, dir3, out hit, 1f, layerMask);
-	Debug.Log(wall);
 	bool ground = Physics.Raycast(aimPosition+dir3, new Vector3(0f, -1f, 0f), out hit, 1f, layerMask);
 	return wall && ground;
 }

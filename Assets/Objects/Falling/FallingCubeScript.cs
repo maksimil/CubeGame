@@ -7,6 +7,10 @@ namespace Cube
 {
 public class FallingCubeScript : MonoBehaviour
 {
+public VoidCallback ondie;
+public float timespan;
+
+private float time = 0f;
 private Vector3 aim;
 
 // Start is called before the first frame update
@@ -18,10 +22,12 @@ void Start()
 // Update is called once per frame
 void Update()
 {
-	transform.position = Vector3.Lerp(transform.position, aim, Statics.smoothing*Time.deltaTime);
-	if (transform.position == aim)
+	time += Time.deltaTime;
+	transform.position = Vector3.Lerp(transform.position, aim, time/timespan);
+	if (time >= timespan)
 	{
 		Destroy(gameObject);
+		ondie();
 	}
 }
 }
