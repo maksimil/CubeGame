@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractScript : MonoBehaviour
+namespace Interactables
 {
-public bool reusable;
+public class InteractForParticle : MonoBehaviour,  Interactable
+{
 public GameObject particle;
 
 public void Interact()
 {
-	if (!reusable)
-	{
-		Destroy(gameObject);
-	}
 	Instantiate(particle, transform.position + new Vector3(0f, 1f, 0f), Quaternion.Euler(-90f, 0f, 0f));
+}
 }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vars;
+using Interactables;
 
 namespace Cube
 {
@@ -83,7 +84,7 @@ void Interact()
 	RaycastHit hit;
 	if (Physics.Raycast(aimPosition, new Vector3(0f, -1f, 0f), out hit, 1f, 1 << 9))
 	{
-		hit.collider.GetComponent<InteractScript>().Interact();
+		hit.collider.GetComponent<Interactable>().Interact();
 	}
 }
 }
