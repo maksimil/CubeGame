@@ -45,7 +45,7 @@ void OnDisable()
 // Update is called once per frame
 void Update()
 {
-	transform.position = Vector3.Lerp(transform.position, aimPosition, Statics.smoothing*Time.deltaTime);
+	transform.position = Statics.MovePosition(transform.position, aimPosition);
 }
 
 void Move()
@@ -53,21 +53,32 @@ void Move()
 	moving = direction != new Vector2(0f, 0f) && CheckGroundAndWalls(direction);
 	if (moving)
 	{
-		FallingCubeScript fcube = Instantiate(fallingCube, transform.position, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FallingCubeScript>();
-		fcube.ondie = Move;
-		Vector3 pos = transform.position;
-		transform.position = new Vector3(pos.x+direction.x, aimPosition.y-1f, pos.z+direction.y);
-		aimPosition = transform.position + new Vector3(0f, 1f, 0f);
+		if (CheckGroundUnder())
+		{
+			FallingCubeScript fcube = Instantiate(fallingCube, aimPosition, Quaternion.Euler(0f, 0f, 0f)).GetComponent<FallingCubeScript>();
+			fcube.ondie = Move;
+			Vector3 pos = aimPosition;
+			transform.position = new Vector3(pos.x+direction.x, aimPosition.y-1f, pos.z+direction.y);
+			aimPosition = transform.position + new Vector3(0f, 1f, 0f);
+		} else
+		{
+			movePlayer(new Vector3(direction.x, 0f, direction.y));
+			Invoke("Move", Statics.MOVE_PERIOD);
+		}
 	}
+}
+
+bool CheckGroundUnder()
+{
+	return Physics.Raycast(aimPosition, new Vector3(0f, -1f, 0f), 1f, 1 << 8);
 }
 
 bool CheckGroundAndWalls(Vector2 direction)
 {
 	Vector3 dir3 = new Vector3(direction.x, 0f, direction.y);
 	RaycastHit hit;
-	int layerMask = 1 << 8;
-	bool wall = !Physics.Raycast(aimPosition, dir3, out hit, 1f, layerMask);
-	bool ground = Physics.Raycast(aimPosition+dir3, new Vector3(0f, -1f, 0f), out hit, 1f, layerMask);
+	bool wall = !Physics.Raycast(aimPosition, dir3, out hit, 1f, 1 << 8);
+	bool ground = Physics.Raycast(aimPosition+dir3, new Vector3(0f, -1f, 0f), out hit, 1f, 1 << 8);
 	return wall && ground;
 }
 

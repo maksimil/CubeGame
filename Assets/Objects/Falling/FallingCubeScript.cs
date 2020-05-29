@@ -8,7 +8,6 @@ namespace Cube
 public class FallingCubeScript : MonoBehaviour
 {
 public VoidCallback ondie;
-public float timespan;
 
 private float time = 0f;
 private Vector3 aim;
@@ -23,8 +22,8 @@ void Start()
 void Update()
 {
 	time += Time.deltaTime;
-	transform.position = Vector3.Lerp(transform.position, aim, time/timespan);
-	if (time >= timespan)
+	transform.position = Vector3.Lerp(transform.position, aim, time/Statics.MOVE_PERIOD);
+	if (time >= Statics.MOVE_PERIOD)
 	{
 		Destroy(gameObject);
 		ondie();
