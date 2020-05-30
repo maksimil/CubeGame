@@ -1,2 +1,2 @@
 # CubeGame
-Game, whre cube exists and walks through levels, thats all
+Game, where cube exists and walks through levels, thats all
