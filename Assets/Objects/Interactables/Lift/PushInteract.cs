@@ -5,13 +5,13 @@ using Cube;
 
 namespace Interactables
 {
-public class LiftInteractScript : MonoBehaviour, Interactable
+public class PushInteract : MonoBehaviour, Interactable
 {
-public float lift;
+public Vector3 pushAmount;
 
 public void Interact(MainCubeScript player)
 {
-	player.movePlayer(new Vector3(0f, lift, 0f));
+	player.MovePlayer(pushAmount);
 }
 }
 }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cube;
-using Traps;
 
-namespace Aim
+namespace Traps
 {
-public class AimInteract : Trap
+public class PushTrap : Trap
 {
+public Vector3 pushAmount;
+
 public override void Start()
 {
 	direction = new Vector3(0f, 1f, 0f);
@@ -18,7 +19,8 @@ public override void Start()
 
 public override void Activate(MainCubeScript player)
 {
-	Debug.Log("Next lvl");
+	Debug.Log("Moved");
+	player.MovePlayer(pushAmount);
 }
 }
 }

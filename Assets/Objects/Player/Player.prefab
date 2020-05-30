@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2670743139354312781}
   - component: {fileID: 6621537365591290628}
   - component: {fileID: 504004104685340134}
-  m_Layer: 0
+  - component: {fileID: 2900051788484178436}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,3 +96,16 @@ MonoBehaviour:
   fallingCube: {fileID: 2768498966825069594, guid: 147445bf06716f94996445c47d0bda28,
     type: 3}
   aimPosition: {x: 0, y: 0, z: 0}
+--- !u!65 &2900051788484178436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469826502968054672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

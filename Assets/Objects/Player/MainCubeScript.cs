@@ -62,7 +62,7 @@ void Move()
 			aimPosition = transform.position + new Vector3(0f, 1f, 0f);
 		} else
 		{
-			movePlayer(new Vector3(direction.x, 0f, direction.y));
+			MovePlayer(new Vector3(direction.x, 0f, direction.y));
 			Invoke("Move", Statics.MOVE_PERIOD);
 		}
 	}
@@ -91,7 +91,7 @@ void Interact()
 	}
 }
 
-public void movePlayer(Vector3 delta)
+public void MovePlayer(Vector3 delta)
 {
 	aimPosition += delta;
 }
