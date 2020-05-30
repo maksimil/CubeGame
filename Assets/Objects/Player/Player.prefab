@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf20436a3bac94e4490670bafa7bc81a, type: 2}
+  - {fileID: 2100000, guid: adc87c767a79e73408a0f633b4a3dfa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,6 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f39721740bbb0a4ba252c9cae8feeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer: 8
   fallingCube: {fileID: 2768498966825069594, guid: 147445bf06716f94996445c47d0bda28,
     type: 3}
+  aimPosition: {x: 0, y: 0, z: 0}
