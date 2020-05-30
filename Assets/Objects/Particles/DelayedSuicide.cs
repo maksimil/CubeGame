@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Particles
+{
 public class DelayedSuicide : MonoBehaviour
 {
 public float timespan;
@@ -15,5 +17,6 @@ void Start()
 void Die()
 {
 	Destroy(gameObject);
+}
 }
 }
