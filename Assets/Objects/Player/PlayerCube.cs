@@ -52,6 +52,11 @@ void OnDisable()
 }
 // </editor-fold>
 
+void Start()
+{
+	aimPosition = transform.position;
+}
+
 // Update is called once per frame
 void Update()
 {
