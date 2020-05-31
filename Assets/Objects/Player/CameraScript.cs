@@ -11,14 +11,14 @@ public class CameraScript : MonoBehaviour
 public GameObject player;
 
 private Vector3 offset;
-private MainCubeScript playerScript;
+private PlayerCube playerScript;
 
 
 // Start is called before the first frame update
 void Start()
 {
 	offset = transform.position - player.transform.position;
-	playerScript = player.GetComponent<MainCubeScript>();
+	playerScript = player.GetComponent<PlayerCube>();
 }
 
 // Update is called once per frame

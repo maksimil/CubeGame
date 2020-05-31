@@ -16,7 +16,7 @@ public override void Start()
 	oneUse = true;
 }
 
-public override void Activate(MainCubeScript player)
+public override void Activate(PlayerCube player)
 {
 	Debug.Log("Next lvl");
 }

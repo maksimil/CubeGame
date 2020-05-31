@@ -8,18 +8,18 @@ namespace Traps
 public class PushTrap : Trap
 {
 public Vector3 pushAmount;
+public bool reusable;
 
 public override void Start()
 {
 	direction = new Vector3(0f, 1f, 0f);
 	positionOffset = new Vector3(0f, 0f, 0f);
 	range = 1f;
-	oneUse = true;
+	oneUse = !reusable;
 }
 
-public override void Activate(MainCubeScript player)
+public override void Activate(PlayerCube player)
 {
-	Debug.Log("Moved");
 	player.MovePlayer(pushAmount);
 }
 }

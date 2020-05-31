@@ -6,7 +6,7 @@ using Interactables;
 
 namespace Cube
 {
-public class MainCubeScript : MonoBehaviour
+public class PlayerCube : MonoBehaviour
 {
 public GameObject fallingCube;
 

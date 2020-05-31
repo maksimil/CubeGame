@@ -1,6 +1,7 @@
 using UnityEngine;
 using Interactables;
 using Cube;
+using Vars;
 
 namespace Traps
 {
@@ -10,22 +11,33 @@ protected Vector3 direction;
 protected Vector3 positionOffset;
 protected float range;
 protected bool oneUse;
+private bool usable = true;
 
 public abstract void Start();
 
 void Update()
 {
-	RaycastHit hit;
-	if (Physics.Raycast(transform.position+positionOffset, direction, out hit, range, 1 << 10))
+	if (usable)
 	{
-		Activate(hit.collider.GetComponent<MainCubeScript>());
-		if (oneUse)
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position+positionOffset, direction, out hit, range, 1 << 10))
 		{
-			Destroy(gameObject);
+			Activate(hit.collider.GetComponent<PlayerCube>());
+			if (oneUse)
+			{
+				Destroy(gameObject);
+			}
+			usable = false;
+			Invoke("SetUsable", Statics.TRAP_COOLDOWN);
 		}
 	}
 }
 
-public abstract void Activate(MainCubeScript player);
+void SetUsable()
+{
+	usable = true;
+}
+
+public abstract void Activate(PlayerCube player);
 }
 }

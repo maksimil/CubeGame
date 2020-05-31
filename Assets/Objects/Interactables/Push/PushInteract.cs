@@ -9,7 +9,7 @@ public class PushInteract : MonoBehaviour, Interactable
 {
 public Vector3 pushAmount;
 
-public void Interact(MainCubeScript player)
+public void Interact(PlayerCube player)
 {
 	player.MovePlayer(pushAmount);
 }
