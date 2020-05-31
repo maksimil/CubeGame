@@ -20,15 +20,25 @@ private InputMaster controls;
 void Awake()
 {
 	controls = new InputMaster();
-	controls.Cube.Move.performed += ctx =>
+	controls.Cube.MoveH.performed += ctx =>
 	{
-		direction = ctx.ReadValue<Vector2>();
-		if (!moving && direction != new Vector2(0f, 0f))
-		{
-			Move();
-		}
+		direction = new Vector2(ctx.ReadValue<float>(), direction.y);
+		TestForMove();
+	};
+	controls.Cube.MoveV.performed += ctx =>
+	{
+		direction = new Vector2(direction.x, ctx.ReadValue<float>());
+		TestForMove();
 	};
 	controls.Cube.Interact.performed += _ => Interact();
+}
+
+void TestForMove()
+{
+	if (!moving && direction != new Vector2(0f, 0f))
+	{
+		Move();
+	}
 }
 
 void OnEnable()
