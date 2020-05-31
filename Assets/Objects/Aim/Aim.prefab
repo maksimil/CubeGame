@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4418549056807643788}
   - component: {fileID: 4418549056807643789}
   m_Layer: 9
-  m_Name: AimInteract
+  m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4418549056807643790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f9b30c5c15ba0448a62ab245d68d80, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c467a77d77f5244d85677d1cc95f8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: 0
+  levelLoader: {fileID: 0}
