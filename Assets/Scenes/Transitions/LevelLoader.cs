@@ -12,7 +12,12 @@ public Animator transition;
 
 public void Transition(int move)
 {
-	StartCoroutine(Load(SceneManager.GetActiveScene().buildIndex + move));
+	MoveLevel(SceneManager.GetActiveScene().buildIndex + move);
+}
+
+public void MoveLevel(int scene)
+{
+	StartCoroutine(Load(scene));
 }
 
 IEnumerator Load(int index)
