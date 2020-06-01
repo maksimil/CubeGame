@@ -1,3 +1,0 @@
-8 - ground
-9 - interactable
-10 - player
